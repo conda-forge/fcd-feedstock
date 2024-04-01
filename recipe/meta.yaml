@@ -1,5 +1,5 @@
 {% set name = "fcd" %}
-{% set version = "1.1" %}
+{% set version = "1.2.1" %}
 
 
 package:
@@ -7,8 +7,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/FCD-{{ version }}.tar.gz
-  sha256: 2bc58e3ea663c0d473383f7971bb9139f784d3a77fc6f65e846a90f7d662763b
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: bf59edbfc90dc9eea07a820de1eaa329075c23876ceaf34656823dbe128f5a74
 
 build:
   number: 0

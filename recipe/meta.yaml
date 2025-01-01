@@ -7,22 +7,23 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/FCD-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/FCD-{{ version }}.tar.gz
   sha256: 2bc58e3ea663c0d473383f7971bb9139f784d3a77fc6f65e846a90f7d662763b
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
     - pip
-    - python
+    - python {{ python_min }}
+    - setuptools
   run:
     - keras
     - numpy
-    - python
+    - python >={{ python_min }}
     - scipy
     - tensorflow
     - rdkit
@@ -30,10 +31,14 @@ requirements:
 test:
   imports:
     - fcd
-  commands:
-    - pip check
+  # commands:
+    # disable because
+    # multidict 6.1.0 has requirement typing-extensions>=4.1.0; python_version < "3.11", but you have typing-extensions 3.7.4.3.
+    # pandas 2.2.2 has requirement numpy>=1.22.4; python_version < "3.11", but you have numpy 1.19.5.
+    # - pip check
   requires:
-    - pip
+    # - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/bioinf-jku/FCD

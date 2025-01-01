@@ -7,22 +7,22 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/FCD-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/FCD-{{ version }}.tar.gz
   sha256: 2bc58e3ea663c0d473383f7971bb9139f784d3a77fc6f65e846a90f7d662763b
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
     - pip
-    - python
+    - python {{ python_min }}
   run:
     - keras
     - numpy
-    - python
+    - python >={{ python_min }}
     - scipy
     - tensorflow
     - rdkit
@@ -34,6 +34,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/bioinf-jku/FCD

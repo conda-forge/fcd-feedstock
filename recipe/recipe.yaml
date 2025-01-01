@@ -33,10 +33,6 @@ tests:
       imports:
         - fcd
       python_version: ${{ python_min }}.*
-  - <conda_recipe_manager.types.SentinelType object at 0x1048e46e0>:
-      requirements:
-        run:
-          - python ${{ python_min }}
 
 about:
   summary: Fréchet ChEMNet Distance

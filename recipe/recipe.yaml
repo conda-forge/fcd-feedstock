@@ -1,0 +1,49 @@
+context:
+  name: fcd
+  version: 1.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/FCD-${{ version }}.tar.gz
+  sha256: 2bc58e3ea663c0d473383f7971bb9139f784d3a77fc6f65e846a90f7d662763b
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - keras
+    - numpy
+    - python >=${{ python_min }}
+    - scipy
+    - tensorflow
+    - rdkit
+
+tests:
+  - python:
+      imports:
+        - fcd
+      python_version: ${{ python_min }}.*
+  - <conda_recipe_manager.types.SentinelType object at 0x1048e46e0>:
+      requirements:
+        run:
+          - python ${{ python_min }}
+
+about:
+  summary: Fréchet ChEMNet Distance
+  license: LGPL-3.0-only
+  license_file: LICENSE
+  homepage: https://github.com/bioinf-jku/FCD
+
+extra:
+  recipe-maintainers:
+    - hadim

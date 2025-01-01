@@ -22,7 +22,7 @@ requirements:
     - hatchling
   run:
     - python >=${{ python_min }}
-    - torch
+    - pytorch
     - numpy
     - scipy
     - rdkit
